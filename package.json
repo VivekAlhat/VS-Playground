@@ -12,12 +12,41 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "playground",
+          "title": "Playground",
+          "icon": "resources/wand.svg"
+        }
+      ]
+    },
+    "views": {
+      "playground": [
+        {
+          "type": "webview",
+          "id": "playground-sidebar",
+          "name": "Playground",
+          "icon": "resources/wand.svg",
+          "contextualTitle": "Playground"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "vs-playground.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "vs-playground.helloWorld",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
